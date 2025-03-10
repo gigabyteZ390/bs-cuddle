@@ -31,6 +31,6 @@ typedef struct {
     char **rows;
 } column_t;
 
-int handling_csv_files(int argc, char **argv);
+dataframe_t *df_read_csv(const char *filename, const char *separator);
 
-#endif
+#endif /* MY_H */

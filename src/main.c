@@ -13,9 +13,10 @@
 #include <ctype.h>
 #include "my_macro.h"
 #include "my_functions.h"
+#include "dataframe.h"
 
 int main(int argc, char **argv)
 {
-    opening_csv_file(argv[1]);
+    df_read_csv("data.csv", NULL);
     return SUCCESS;
 }
