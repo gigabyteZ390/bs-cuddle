@@ -32,10 +32,10 @@ static char *read_line(FILE *file)
 
 FILE* opening_csv_file(char **argv)
 {
-    FILE *file = fopen(argv[1], "r");
+    FILE *file = fopen("data.csv", "r");
 
     if (file == NULL) {
-        fprintf(stderr, "No such file as 105demography.csv\n");
+        fprintf(stderr, "No such file as data.csv\n");
         return NULL;
     }
     read_line(file);
