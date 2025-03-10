@@ -9,4 +9,5 @@
     #define _MY_MACRO_H_
     #define SUCCESS 0
     #define ERROR 84
+
 #endif /* _MY_MACRO_H_ */

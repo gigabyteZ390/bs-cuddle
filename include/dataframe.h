@@ -10,13 +10,21 @@
     #define MY_H
 
 typedef enum {
-BOOL ,
-INT ,
-UINT ,
-FLOAT ,
-STRING ,
-UNDEFINED
-} column_type_t ;
+    BOOL,
+    INT,
+    UINT,
+    FLOAT,
+    STRING,
+    UNDEFINED
+} column_type_t;
+
+typedef struct {
+    int nb_rows;
+    int nb_columns;
+    char **column_names;
+    column_type_t *column_types;
+    void ***data;
+} dataframe_t;
 
 int handling_csv_files(int argc, char **argv);
 

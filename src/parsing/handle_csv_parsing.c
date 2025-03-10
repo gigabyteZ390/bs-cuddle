@@ -27,8 +27,8 @@ static FILE* opening_csv_file(void)
 
 static char *read_line(FILE *file)
 {
-    char *line; 
-    
+    char *line;
+
     line = malloc(sizeof(char) * MAX_LINE_LENGTH);
     if (!line)
         return NULL;
