@@ -8,39 +8,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
-#include <errno.h>
-#include <ctype.h>
-#include "my.h"
 #include "my_macro.h"
+#include "my_functions.h"
+#include "my_lib_functions.h"
 
-static FILE* opening_csv_file(void)
+static char *read_line(FILE *file)
 {
-    FILE *file = fopen("./105demography_data.csv", "r");
+    ssize_t read = 0;
+    size_t buffer = 0;
+    char *line = NULL;
+    char **parsed_line = NULL;
+
+    read = getline(&line, &buffer, file);
+    while (read != -1) {
+        parsed_line = my_str_to_word_array(line, "\t\n, ");
+        for (int i = 0; parsed_line[i] != NULL; i++)
+            printf("parsed : %s\n", parsed_line[i]);
+        read = getline(&line, &buffer, file);
+    }
+    free(line);
+    return SUCCESS;
+}
+
+FILE* opening_csv_file(char **argv)
+{
+    FILE *file = fopen(argv[1], "r");
 
     if (file == NULL) {
         fprintf(stderr, "No such file as 105demography.csv\n");
         return NULL;
     }
+    read_line(file);
     return file;
 }
 
-static char *read_line(FILE *file)
-{
-    char *line;
 
-    line = malloc(sizeof(char) * MAX_LINE_LENGTH);
-    if (!line)
-        return NULL;
-    if (fgets(line, MAX_LINE_LENGTH, file) == NULL) {
-        free(line);
-        return NULL;
-    }
-    line[strcspn(line, "\n")] = 0;
-    return line;
-}
 
-int handling_csv_files(int argc, char **argv)
+/*int handling_csv_files(int argc, char **argv)
 {
     FILE *file = opening_csv_file();
 
@@ -51,4 +55,4 @@ int handling_csv_files(int argc, char **argv)
     }
     fclose(file);
     return SUCCESS;
-}
+} */

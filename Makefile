@@ -5,25 +5,38 @@
 ## Makefile that create lib, make tests and run them
 ##
 
-SRC = 	./src/main.c	\
-		./src/handle_csv_parsing.c    \
+##
+## EPITECH PROJECT, 2024
+## Makefile
+## File description:
+## Makefile
+##
 
-OBJ = $(SRC:.c=.o)
+SRC	=	./src/main.c 					\
+		./src/parsing/handle_csv_parsing.c		\
 
-LIB_NAME = libcuddle.a
+CFLAGS	+=	-iquote ./include -Wextra -Wall -pedantic -g3 -ggdb3
 
-CFLAGS = -Iinclude
+LDFLAGS	+=	-Llib
 
-all: $(BINARY_NAME)
+LDLIBS	=	-lmy
 
-$(BINARY_NAME): $(OBJ)
-	ar rc $(BINARY_NAME) $(OBJ)
-	ranlib $(BINARY_NAME)
+OBJ	=	$(SRC:.c=.o)
+
+NAME	=	caca
+
+all:    $(NAME)
+
+$(NAME):	$(OBJ)
+	make -C ./lib
+	gcc -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
 clean:
-	rm -f $(OBJ)
+	make clean -C ./lib
+	rm -f $(OBJ) $(NAME)
 
 fclean: clean
-	rm -f $(BINARY_NAME)
+	make fclean -C ./lib
+	rm -f $(OBJ) $(NAME)
 
-re: fclean all
+re:     fclean all

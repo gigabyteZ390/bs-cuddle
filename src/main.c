@@ -11,10 +11,11 @@
 #include <math.h>
 #include <errno.h>
 #include <ctype.h>
-#include "my.h"
 #include "my_macro.h"
+#include "my_functions.h"
 
 int main(int argc, char **argv)
 {
+    opening_csv_file(argv[1]);
     return SUCCESS;
 }
