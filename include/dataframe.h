@@ -26,6 +26,11 @@ typedef struct {
     void ***data;
 } dataframe_t;
 
+typedef struct {
+    char **columns;
+    char **rows;
+} column_t;
+
 int handling_csv_files(int argc, char **argv);
 
 #endif
